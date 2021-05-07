@@ -1,2 +1,4 @@
-const String kWhitePokeball = 'assets/images/pokeball.png';
-const String kBlackPokeball = 'assets/images/pokeball_dark.png';
+const kWhitePokeball = 'assets/images/pokeball.png';
+const kBlackPokeball = 'assets/images/pokeball_dark.png';
+const kBaseURL =
+    'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json';
