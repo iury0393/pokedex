@@ -47,6 +47,17 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
+  Widget getImage({String num}) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.getImage');
+    try {
+      return super.getImage(num: num);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic getPokemon({int index}) {
     final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
         name: '_HomeControllerBase.getPokemon');

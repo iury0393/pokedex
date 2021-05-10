@@ -61,7 +61,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   padding: EdgeInsets.all(12),
                                   addAutomaticKeepAlives: true,
                                   gridDelegate:
-                                      new SliverGridDelegateWithFixedCrossAxisCount(
+                                      SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2),
                                   itemCount: _controller.pokeAPI.pokemon.length,
                                   itemBuilder: (context, index) {
@@ -78,17 +78,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             types: pokemon.type,
                                             index: index,
                                             name: pokemon.name,
-                                            num: pokemon.num,
+                                            image: _controller.getImage(
+                                                num: pokemon.num),
                                           ),
                                           onTap: () {
                                             Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (BuildContext
-                                                          context) =>
-                                                      Container() /*PokeDetailPage(index: index)*/,
-                                                  fullscreenDialog: true,
-                                                ));
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (BuildContext
+                                                        context) =>
+                                                    Container() /*PokeDetailPage(index: index)*/,
+                                                fullscreenDialog: true,
+                                              ),
+                                            );
                                           },
                                         ),
                                       ),

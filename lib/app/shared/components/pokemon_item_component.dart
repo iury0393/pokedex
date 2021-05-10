@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/app/shared/constants.dart';
 import 'package:pokedex/app/shared/text_styles.dart';
@@ -7,11 +6,11 @@ class PokemonItemComponent extends StatelessWidget {
   final String name;
   final int index;
   final Color color;
-  final String num;
+  final Widget image;
   final List<String> types;
 
   const PokemonItemComponent(
-      {Key key, this.name, this.index, this.color, this.num, this.types})
+      {Key key, this.name, this.index, this.color, this.image, this.types})
       : super(key: key);
 
   Widget setTipos() {
@@ -91,18 +90,7 @@ class PokemonItemComponent extends StatelessWidget {
                   opacity: 0.2,
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: CachedNetworkImage(
-                  height: 80,
-                  width: 80,
-                  placeholder: (context, url) => new Container(
-                    color: Colors.transparent,
-                  ),
-                  imageUrl:
-                      'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$num.png',
-                ),
-              ),
+              image,
             ],
           ),
         ),
