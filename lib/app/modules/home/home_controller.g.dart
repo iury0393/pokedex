@@ -9,24 +9,24 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
-  Computed<PokeAPI> _$pokeAPIComputed;
+  Computed<PokeApi> _$pokeAPIComputed;
 
   @override
-  PokeAPI get pokeAPI =>
-      (_$pokeAPIComputed ??= Computed<PokeAPI>(() => super.pokeAPI,
+  PokeApi get pokeAPI =>
+      (_$pokeAPIComputed ??= Computed<PokeApi>(() => super.pokeAPI,
               name: '_HomeControllerBase.pokeAPI'))
           .value;
 
   final _$_pokeAPIAtom = Atom(name: '_HomeControllerBase._pokeAPI');
 
   @override
-  PokeAPI get _pokeAPI {
+  PokeApi get _pokeAPI {
     _$_pokeAPIAtom.reportRead();
     return super._pokeAPI;
   }
 
   @override
-  set _pokeAPI(PokeAPI value) {
+  set _pokeAPI(PokeApi value) {
     _$_pokeAPIAtom.reportWrite(value, super._pokeAPI, () {
       super._pokeAPI = value;
     });

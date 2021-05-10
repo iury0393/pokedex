@@ -15,7 +15,7 @@ class PokemonItemComponent extends StatelessWidget {
 
   Widget setTipos() {
     List<Widget> lista = [];
-    types.forEach((nome) {
+    types.forEach((element) {
       lista.add(
         Column(
           children: <Widget>[
@@ -27,7 +27,7 @@ class PokemonItemComponent extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: Text(
-                  nome.trim(),
+                  element.trim(),
                   style: TextStyles.paragraph(
                     TextSize.xxSmall,
                     color: Colors.white,
@@ -72,10 +72,6 @@ class PokemonItemComponent extends StatelessWidget {
                         weight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: setTipos(),
                   ),
                 ],
               ),

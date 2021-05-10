@@ -1,67 +1,65 @@
-class Pokemons {
-  List<Pokemon> pokemon;
+class PokeApi {
+  PokemonsModel pokemon;
 
-  Pokemons({this.pokemon});
+  PokeApi({this.pokemon});
 
-  Pokemons.fromJson(List<dynamic> jsonList)
-      : pokemon = jsonList.map((e) => Pokemon.fromJson(e)).toList();
+  PokeApi.fromJson(Map<String, dynamic> json)
+      : pokemon = PokemonsModel.fromJson(json['pokemon']);
 }
 
-class Pokemon {
+class PokemonsModel {
+  List<PokemonModel> data;
+
+  PokemonsModel({this.data});
+
+  PokemonsModel.fromJson(List<dynamic> jsonList)
+      : data = jsonList.map((e) => PokemonModel.fromJson(e)).toList();
+}
+
+class PokemonModel {
   int id;
   String num;
   String name;
   String img;
-  Types type;
   String height;
   String weight;
   String candy;
   String egg;
+  List<String> type;
   NextEvolutionsModel nextEvolution;
   PrevEvolutionsModel prevEvolution;
 
-  Pokemon(
-      {this.id,
-      this.num,
-      this.name,
-      this.img,
-      this.type,
-      this.height,
-      this.weight,
-      this.candy,
-      this.egg,
-      this.nextEvolution,
-      this.prevEvolution});
+  PokemonModel({
+    this.id,
+    this.num,
+    this.name,
+    this.img,
+    this.height,
+    this.weight,
+    this.candy,
+    this.egg,
+    this.type,
+    this.nextEvolution,
+    this.prevEvolution,
+  });
 
-  Pokemon.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        num = json['num'],
-        name = json['name'],
-        img = json['img'],
-        type = Types.fromJson(json['type']),
-        height = json['height'],
-        weight = json['weight'],
-        candy = json['candy'],
-        egg = json['egg'],
-        nextEvolution = NextEvolutionsModel.fromJson(json['next_evolution']),
-        prevEvolution = PrevEvolutionsModel.fromJson(json['prev_evolution']);
-}
-
-class Type {
-  String type;
-
-  Type({this.type});
-
-  Type.fromJson(Map<String, dynamic> json) : type = json['type'];
-}
-
-class Types {
-  List<Type> type;
-
-  Types({this.type});
-
-  Types.fromJson(List<dynamic> jsonList)
-      : type = jsonList.map((e) => Type.fromJson(e)).toList();
+  PokemonModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    num = json['num'];
+    name = json['name'];
+    img = json['img'];
+    height = json['height'];
+    weight = json['weight'];
+    candy = json['candy'];
+    egg = json['egg'];
+    type = json['type'].cast<String>();
+    if (json['next_evolution'] != null) {
+      nextEvolution = NextEvolutionsModel.fromJson(json['next_evolution']);
+    }
+    if (json['prev_evolution'] != null) {
+      prevEvolution = PrevEvolutionsModel.fromJson(json['prev_evolution']);
+    }
+  }
 }
 
 class NextEvolutionModel {

@@ -6,7 +6,7 @@ import 'package:pokedex/app/modules/home/home_controller.dart';
 import 'package:pokedex/app/shared/components/app_bar_component.dart';
 import 'package:pokedex/app/shared/components/pokemon_item_component.dart';
 import 'package:pokedex/app/shared/constants.dart';
-import 'package:pokedex/app/shared/models/pokeapi_model.dart';
+import 'package:pokedex/app/shared/models/pokemon_model.dart';
 
 class HomeWidget extends StatefulWidget {
   @override
@@ -63,9 +63,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2),
-                                  itemCount: _controller.pokeAPI.pokemon.length,
+                                  itemCount:
+                                      _controller.pokeAPI.pokemon.data.length,
                                   itemBuilder: (context, index) {
-                                    Pokemon pokemon =
+                                    PokemonModel pokemon =
                                         _controller.getPokemon(index: index);
                                     return AnimationConfiguration.staggeredGrid(
                                       position: index,

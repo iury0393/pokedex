@@ -1,5 +1,5 @@
-import 'package:pokedex/app/shared/models/pokeapi_model.dart';
+import 'package:pokedex/app/shared/models/pokemon_model.dart';
 
 abstract class IHomeRepository {
-  Future<PokeAPI> loadPokeAPI();
+  Future<PokeApi> loadPokeAPI();
 }
