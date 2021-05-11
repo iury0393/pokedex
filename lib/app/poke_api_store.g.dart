@@ -16,6 +16,13 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
       (_$pokeAPIComputed ??= Computed<PokeApi>(() => super.pokeAPI,
               name: '_PokeApiStoreBase.pokeAPI'))
           .value;
+  Computed<PokemonModel> _$pokemonAtualComputed;
+
+  @override
+  PokemonModel get pokemonAtual => (_$pokemonAtualComputed ??=
+          Computed<PokemonModel>(() => super.pokemonAtual,
+              name: '_PokeApiStoreBase.pokemonAtual'))
+      .value;
 
   final _$_pokeAPIAtom = Atom(name: '_PokeApiStoreBase._pokeAPI');
 
@@ -29,6 +36,21 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   set _pokeAPI(PokeApi value) {
     _$_pokeAPIAtom.reportWrite(value, super._pokeAPI, () {
       super._pokeAPI = value;
+    });
+  }
+
+  final _$_pokemonAtualAtom = Atom(name: '_PokeApiStoreBase._pokemonAtual');
+
+  @override
+  PokemonModel get _pokemonAtual {
+    _$_pokemonAtualAtom.reportRead();
+    return super._pokemonAtual;
+  }
+
+  @override
+  set _pokemonAtual(PokemonModel value) {
+    _$_pokemonAtualAtom.reportWrite(value, super._pokemonAtual, () {
+      super._pokemonAtual = value;
     });
   }
 
@@ -47,17 +69,6 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   }
 
   @override
-  Widget getImage({String num}) {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.getImage');
-    try {
-      return super.getImage(num: num);
-    } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic getPokemon({int index}) {
     final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
         name: '_PokeApiStoreBase.getPokemon');
@@ -69,9 +80,32 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   }
 
   @override
+  dynamic setPokemonAtual({int index}) {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.setPokemonAtual');
+    try {
+      return super.setPokemonAtual(index: index);
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  Widget getImage(double height, double width, {String num}) {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.getImage');
+    try {
+      return super.getImage(height, width, num: num);
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-pokeAPI: ${pokeAPI}
+pokeAPI: ${pokeAPI},
+pokemonAtual: ${pokemonAtual}
     ''';
   }
 }

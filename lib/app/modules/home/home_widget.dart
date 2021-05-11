@@ -19,7 +19,9 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   void initState() {
     super.initState();
-    _controller.fetchPokemonList();
+    if (_controller.pokeAPI == null) {
+      _controller.fetchPokemonList();
+    }
   }
 
   @override
@@ -79,19 +81,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             types: pokemon.type,
                                             index: index,
                                             name: pokemon.name,
-                                            image: _controller.getImage(
+                                            image: _controller.getImage(80, 80,
                                                 num: pokemon.num),
                                           ),
                                           onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (BuildContext
-                                                        context) =>
-                                                    Container() /*PokeDetailPage(index: index)*/,
-                                                fullscreenDialog: true,
-                                              ),
-                                            );
+                                            _controller.setPokemonAtual(
+                                                index: index);
+                                            Modular.to.pushNamed('poke_detail',
+                                                arguments: index);
                                           },
                                         ),
                                       ),

@@ -14,8 +14,14 @@ abstract class _PokeApiStoreBase with Store {
   @observable
   PokeApi _pokeAPI;
 
+  @observable
+  PokemonModel _pokemonAtual;
+
   @computed
   PokeApi get pokeAPI => _pokeAPI;
+
+  @computed
+  PokemonModel get pokemonAtual => _pokemonAtual;
 
   @action
   fetchPokemonList() {
@@ -26,12 +32,22 @@ abstract class _PokeApiStoreBase with Store {
   }
 
   @action
-  Widget getImage({String num}) {
+  getPokemon({int index}) {
+    return _pokeAPI.pokemon.data[index];
+  }
+
+  @action
+  setPokemonAtual({int index}) {
+    _pokemonAtual = _pokeAPI.pokemon.data[index];
+  }
+
+  @action
+  Widget getImage(double height, double width, {String num}) {
     return Align(
       alignment: Alignment.bottomRight,
       child: CachedNetworkImage(
-        height: 80,
-        width: 80,
+        height: height,
+        width: width,
         placeholder: (context, url) => new Container(
           color: Colors.transparent,
         ),
@@ -39,10 +55,5 @@ abstract class _PokeApiStoreBase with Store {
             'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$num.png',
       ),
     );
-  }
-
-  @action
-  getPokemon({int index}) {
-    return _pokeAPI.pokemon.data[index];
   }
 }
