@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pokedex/app/modules/home/repository/home_repository.dart';
+import 'package:pokedex/app/global_repository/global_repository.dart';
 import 'package:pokedex/app/shared/models/pokemon_model.dart';
-part 'home_controller.g.dart';
+part 'poke_api_store.g.dart';
 
-class HomeController = _HomeControllerBase with _$HomeController;
+class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
 
-abstract class _HomeControllerBase with Store {
-  final HomeRepository homeRepository = HomeRepository();
+abstract class _PokeApiStoreBase with Store {
+  final GlobalRepository globalRepository = Modular.get<GlobalRepository>();
 
   @observable
   PokeApi _pokeAPI;
@@ -19,7 +20,7 @@ abstract class _HomeControllerBase with Store {
   @action
   fetchPokemonList() {
     _pokeAPI = null;
-    homeRepository.loadPokeAPI().then((pokeList) {
+    globalRepository.loadPokeAPI().then((pokeList) {
       _pokeAPI = pokeList;
     });
   }

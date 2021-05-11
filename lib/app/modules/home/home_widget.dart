@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:pokedex/app/modules/home/home_controller.dart';
+import 'package:pokedex/app/poke_api_store.dart';
 import 'package:pokedex/app/shared/components/app_bar_component.dart';
 import 'package:pokedex/app/shared/components/pokemon_item_component.dart';
 import 'package:pokedex/app/shared/constants.dart';
@@ -14,7 +14,7 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  final HomeController _controller = Modular.get();
+  final PokeApiStore _controller = Modular.get<PokeApiStore>();
 
   @override
   void initState() {

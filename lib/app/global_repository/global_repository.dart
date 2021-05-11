@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:pokedex/app/modules/home/repository/home_repository_interface.dart';
+import 'package:pokedex/app/global_repository/global_repository_interface.dart';
 import 'package:pokedex/app/shared/constants.dart';
 import 'package:pokedex/app/shared/models/pokemon_model.dart';
 
-class HomeRepository implements IHomeRepository {
+class GlobalRepository implements IGlobalRepository {
   @override
   Future<PokeApi> loadPokeAPI() async {
     try {

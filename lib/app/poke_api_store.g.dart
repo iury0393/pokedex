@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_controller.dart';
+part of 'poke_api_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,16 +8,16 @@ part of 'home_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$HomeController on _HomeControllerBase, Store {
+mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   Computed<PokeApi> _$pokeAPIComputed;
 
   @override
   PokeApi get pokeAPI =>
       (_$pokeAPIComputed ??= Computed<PokeApi>(() => super.pokeAPI,
-              name: '_HomeControllerBase.pokeAPI'))
+              name: '_PokeApiStoreBase.pokeAPI'))
           .value;
 
-  final _$_pokeAPIAtom = Atom(name: '_HomeControllerBase._pokeAPI');
+  final _$_pokeAPIAtom = Atom(name: '_PokeApiStoreBase._pokeAPI');
 
   @override
   PokeApi get _pokeAPI {
@@ -32,39 +32,39 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
-  final _$_HomeControllerBaseActionController =
-      ActionController(name: '_HomeControllerBase');
+  final _$_PokeApiStoreBaseActionController =
+      ActionController(name: '_PokeApiStoreBase');
 
   @override
   dynamic fetchPokemonList() {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.fetchPokemonList');
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.fetchPokemonList');
     try {
       return super.fetchPokemonList();
     } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   Widget getImage({String num}) {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.getImage');
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.getImage');
     try {
       return super.getImage(num: num);
     } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic getPokemon({int index}) {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.getPokemon');
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.getPokemon');
     try {
       return super.getPokemon(index: index);
     } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
