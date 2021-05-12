@@ -3,29 +3,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/app/poke_api_store.dart';
-import 'package:pokedex/app/shared/constants.dart';
 import 'package:pokedex/app/shared/models/pokemon_model.dart';
 import 'package:pokedex/app/shared/text_styles.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
-class PokeDetailWidget extends StatelessWidget {
+class PokeDetailWidget extends StatefulWidget {
   final int index;
-
-  Color _corPokemon;
 
   PokeDetailWidget({Key key, this.index}) : super(key: key);
 
   @override
+  _PokeDetailWidgetState createState() => _PokeDetailWidgetState();
+}
+
+class _PokeDetailWidgetState extends State<PokeDetailWidget> {
+  final _controller = Modular.get<PokeApiStore>();
+  PageController _pageController;
+  PokemonModel _pokemon;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: widget.index);
+    _pokemon = _controller.pokemonAtual;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _pokemonStore = Modular.get<PokeApiStore>();
-    PokemonModel _pokemon = _pokemonStore.pokemonAtual;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: Observer(
           builder: (BuildContext context) {
-            _corPokemon =
-                kGetColorType(type: _pokemonStore.pokemonAtual.type[0]);
             return AppBar(
               title: Opacity(
                 child: Text(
@@ -38,7 +47,7 @@ class PokeDetailWidget extends StatelessWidget {
                 opacity: 0.0,
               ),
               elevation: 0,
-              backgroundColor: _corPokemon,
+              backgroundColor: _controller.corPokemon,
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
@@ -59,9 +68,7 @@ class PokeDetailWidget extends StatelessWidget {
         children: [
           Observer(
             builder: (context) {
-              _corPokemon =
-                  kGetColorType(type: _pokemonStore.pokemonAtual.type[0]);
-              return Container(color: _corPokemon);
+              return Container(color: _controller.corPokemon);
             },
           ),
           Container(height: MediaQuery.of(context).size.height / 3),
@@ -83,13 +90,14 @@ class PokeDetailWidget extends StatelessWidget {
             child: SizedBox(
                 height: 150,
                 child: PageView.builder(
+                  controller: _pageController,
                   onPageChanged: (index) {
-                    _pokemonStore.setPokemonAtual(index: index);
+                    _controller.setPokemonAtual(index: index);
                   },
-                  itemCount: _pokemonStore.pokeAPI.pokemon.data.length,
+                  itemCount: _controller.pokeAPI.pokemon.data.length,
                   itemBuilder: (BuildContext context, int count) {
-                    PokemonModel _pokeitem =
-                        _pokemonStore.getPokemon(index: count);
+                    PokemonModel _pokeItem =
+                        _controller.getPokemon(index: count);
                     return CachedNetworkImage(
                       height: 60,
                       width: 60,
@@ -97,7 +105,7 @@ class PokeDetailWidget extends StatelessWidget {
                         color: Colors.transparent,
                       ),
                       imageUrl:
-                          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${_pokeitem.num}.png',
+                          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${_pokeItem.num}.png',
                     );
                   },
                 )),

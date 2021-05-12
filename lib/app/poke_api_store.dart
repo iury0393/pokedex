@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/app/global_repository/global_repository.dart';
+import 'package:pokedex/app/shared/constants.dart';
 import 'package:pokedex/app/shared/models/pokemon_model.dart';
 part 'poke_api_store.g.dart';
 
@@ -16,6 +17,9 @@ abstract class _PokeApiStoreBase with Store {
 
   @observable
   PokemonModel _pokemonAtual;
+
+  @observable
+  Color corPokemon;
 
   @computed
   PokeApi get pokeAPI => _pokeAPI;
@@ -31,14 +35,14 @@ abstract class _PokeApiStoreBase with Store {
     });
   }
 
-  @action
-  getPokemon({int index}) {
+  PokemonModel getPokemon({int index}) {
     return _pokeAPI.pokemon.data[index];
   }
 
   @action
   setPokemonAtual({int index}) {
     _pokemonAtual = _pokeAPI.pokemon.data[index];
+    corPokemon = kGetColorType(type: _pokemonAtual.type[0]);
   }
 
   @action
