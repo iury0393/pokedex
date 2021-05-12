@@ -20,6 +20,7 @@ class TextSize {
   static double xxLarge = 24;
   static double big = 26;
   static double xBig = 28;
+  static double xxBig = 32;
   static double profileSize = 55;
 
   void init(BuildContext context) {

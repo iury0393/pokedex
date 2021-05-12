@@ -57,11 +57,24 @@ class PokemonItemComponent extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Stack(
-            //alignment: Alignment.bottomRight,
-            children: <Widget>[
+            children: [
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Hero(
+                  child: Opacity(
+                    child: Image.asset(
+                      kWhitePokeball,
+                      height: 80,
+                      width: 80,
+                    ),
+                    opacity: 0.2,
+                  ),
+                  tag: name + 'roatation',
+                ),
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                     child: Text(
@@ -77,16 +90,11 @@ class PokemonItemComponent extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.bottomRight,
-                child: Opacity(
-                  child: Image.asset(
-                    kWhitePokeball,
-                    height: 80,
-                    width: 80,
-                  ),
-                  opacity: 0.2,
+                child: Hero(
+                  tag: name,
+                  child: image,
                 ),
               ),
-              image,
             ],
           ),
         ),
