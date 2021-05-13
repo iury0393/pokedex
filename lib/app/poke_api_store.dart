@@ -50,18 +50,13 @@ abstract class _PokeApiStoreBase with Store {
   }
 
   @action
-  Widget getImage(double height, double width, {String num}) {
-    return Align(
-      alignment: Alignment.bottomRight,
-      child: CachedNetworkImage(
-        height: height,
-        width: width,
-        placeholder: (context, url) => new Container(
-          color: Colors.transparent,
-        ),
-        imageUrl:
-            'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$num.png',
+  Widget getImage({String numero}) {
+    return CachedNetworkImage(
+      placeholder: (context, url) => new Container(
+        color: Colors.transparent,
       ),
+      imageUrl:
+          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numero.png',
     );
   }
 }

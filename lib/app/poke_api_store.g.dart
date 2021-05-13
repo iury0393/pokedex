@@ -110,11 +110,11 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   }
 
   @override
-  Widget getImage(double height, double width, {String num}) {
+  Widget getImage({String numero}) {
     final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
         name: '_PokeApiStoreBase.getImage');
     try {
-      return super.getImage(height, width, num: num);
+      return super.getImage(numero: numero);
     } finally {
       _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
     }

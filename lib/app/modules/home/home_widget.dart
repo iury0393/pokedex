@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -81,8 +82,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             types: pokemon.type,
                                             index: index,
                                             name: pokemon.name,
-                                            image: _controller.getImage(80, 80,
-                                                num: pokemon.num),
+                                            image: Align(
+                                              alignment: Alignment.bottomRight,
+                                              child: CachedNetworkImage(
+                                                height: 80,
+                                                width: 80,
+                                                placeholder: (context, url) =>
+                                                    new Container(
+                                                  color: Colors.transparent,
+                                                ),
+                                                imageUrl:
+                                                    'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${pokemon.num}.png',
+                                              ),
+                                            ),
                                           ),
                                           onTap: () {
                                             _controller.setPokemonAtual(

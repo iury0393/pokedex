@@ -99,7 +99,14 @@ class PokemonItemComponent extends StatelessWidget {
           ),
         ),
         decoration: BoxDecoration(
-          color: kGetColorType(type: types[0]),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              kGetColorType(type: types[0]).withOpacity(0.7),
+              kGetColorType(type: types[0])
+            ],
+          ),
           borderRadius: BorderRadius.all(
             Radius.circular(20),
           ),
