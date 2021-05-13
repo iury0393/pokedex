@@ -34,7 +34,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         clipBehavior: Clip.none,
         children: [
           Positioned(
-            top: -(240 / 4.7),
+            top: MediaQuery.of(context).padding.top - 240 / 2.9,
             left: screenWidth - (240 / 1.6),
             child: Opacity(
               child: Image.asset(
