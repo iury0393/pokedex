@@ -35,7 +35,7 @@ class SobreWidget extends StatelessWidget {
                   child: SingleChildScrollView(
                       child: _specie != null
                           ? Text(
-                              _specie.flavorTextEntries
+                              _specie.flavorTextEntries.flavorTextEntries
                                   .where((item) => item.language.name == 'en')
                                   .first
                                   .flavorText,

@@ -1,8 +1,6 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pokedex/app/shared/constants.dart';
+import 'package:pokedex/app/global_repository/global_repository.dart';
 import 'package:pokedex/app/shared/models/pokemon_v2_model.dart';
 import 'package:pokedex/app/shared/models/specie_model.dart';
 
@@ -11,35 +9,33 @@ part 'poke_api_v2_store.g.dart';
 class PokeApiV2Store = _PokeApiV2StoreBase with _$PokeApiV2Store;
 
 abstract class _PokeApiV2StoreBase with Store {
-  @observable
-  Specie specie;
+  final GlobalRepository globalRepository = Modular.get<GlobalRepository>();
 
   @observable
-  PokeApiV2 pokeApiV2;
+  Specie _specie;
+
+  @observable
+  PokeApiV2 _pokeApiV2;
+
+  @computed
+  Specie get specie => _specie;
+
+  @computed
+  PokeApiV2 get pokeApiV2 => _pokeApiV2;
 
   @action
   Future<void> getInfoPokemon(String nome) async {
-    try {
-      Response response = await Dio().get(kPokeapiv2URL + nome.toLowerCase());
-      var decodeJson = jsonDecode(response.data);
-      pokeApiV2 = PokeApiV2.fromJson(decodeJson);
-    } catch (error, stacktrace) {
-      print("Erro ao carregar lista" + stacktrace.toString());
-      return null;
-    }
+    _pokeApiV2 = null;
+    globalRepository.getInfoPokemon(nome).then((pokeListV2) {
+      _pokeApiV2 = pokeListV2;
+    });
   }
 
   @action
   Future<void> getInfoSpecie(String numPokemon) async {
-    try {
-      specie = null;
-      Response response = await Dio().get(kPokeapiv2EspeciesURL + numPokemon);
-      var decodeJson = jsonDecode(response.data);
-      var _specie = Specie.fromJson(decodeJson);
-      specie = _specie;
-    } catch (error, stacktrace) {
-      print("Erro ao carregar lista" + stacktrace.toString());
-      return null;
-    }
+    _specie = null;
+    globalRepository.getInfoSpecies(numPokemon).then((species) {
+      _specie = species;
+    });
   }
 }

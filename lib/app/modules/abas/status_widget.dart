@@ -11,7 +11,7 @@ class StatusWidget extends StatelessWidget {
   List<int> getStatusPokemon(PokeApiV2 pokeApiV2) {
     List<int> list = [1, 2, 3, 4, 5, 6, 7];
     int sum = 0;
-    pokeApiV2.stats.forEach((f) {
+    pokeApiV2.stats.stats.forEach((f) {
       sum = sum + f.baseStat;
       switch (f.stat.name) {
         case 'speed':
