@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pokedex/app/modules/poke_detail/about_page.dart';
+import 'package:pokedex/app/modules/abas/about_page.dart';
 import 'package:pokedex/app/poke_api_store.dart';
 import 'package:pokedex/app/poke_api_v2_store.dart';
 import 'package:pokedex/app/shared/constants.dart';

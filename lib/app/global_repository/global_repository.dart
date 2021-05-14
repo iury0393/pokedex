@@ -24,8 +24,7 @@ class GlobalRepository implements IGlobalRepository {
   Future<PokeApiV2> getInfoPokemon(String nome) async {
     try {
       Response response = await Dio().get(kPokeapiv2URL + nome.toLowerCase());
-      var decodeJson = jsonDecode(response.data);
-      return PokeApiV2.fromJson(decodeJson);
+      return PokeApiV2.fromJson(response.data);
     } catch (error, stacktrace) {
       print("Erro ao carregar lista" + stacktrace.toString());
       return null;
@@ -36,8 +35,7 @@ class GlobalRepository implements IGlobalRepository {
   Future<Specie> getInfoSpecies(String numPokemon) async {
     try {
       Response response = await Dio().get(kPokeapiv2EspeciesURL + numPokemon);
-      var decodeJson = jsonDecode(response.data);
-      return Specie.fromJson(decodeJson);
+      return Specie.fromJson(response.data);
     } catch (error, stacktrace) {
       print("Erro ao carregar lista" + stacktrace.toString());
       return null;

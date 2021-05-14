@@ -25,7 +25,6 @@ abstract class _PokeApiV2StoreBase with Store {
 
   @action
   Future<void> getInfoPokemon(String nome) async {
-    _pokeApiV2 = null;
     globalRepository.getInfoPokemon(nome).then((pokeListV2) {
       _pokeApiV2 = pokeListV2;
     });

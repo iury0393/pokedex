@@ -12,7 +12,7 @@ class AppBarHome extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(top: 25, right: 5),
+                  padding: EdgeInsets.only(top: 15, right: 5),
                   child: IconButton(
                     icon: Icon(Icons.menu),
                     onPressed: () {},

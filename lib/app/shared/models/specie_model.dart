@@ -3,7 +3,6 @@ class Specie {
   int captureRate;
   ObjPokemon color;
   EvolutionChain evolutionChain;
-  ObjPokemon evolvesFromSpecies;
   bool formsSwitchable;
   int genderRate;
   ObjPokemon generation;
@@ -28,7 +27,6 @@ class Specie {
     this.captureRate,
     this.color,
     this.evolutionChain,
-    this.evolvesFromSpecies,
     this.flavorTextEntries,
     this.formsSwitchable,
     this.genderRate,
@@ -62,7 +60,6 @@ class Specie {
         formsSwitchable = json['forms_switchable'],
         color = ObjPokemon.fromJson(json['color']),
         evolutionChain = EvolutionChain.fromJson(json['evolution_chain']),
-        evolvesFromSpecies = ObjPokemon.fromJson(json['evolves_from_species']),
         generation = ObjPokemon.fromJson(json['generation']),
         growthRate = ObjPokemon.fromJson(json['growth_rate']),
         shape = ObjPokemon.fromJson(json['shape']),
